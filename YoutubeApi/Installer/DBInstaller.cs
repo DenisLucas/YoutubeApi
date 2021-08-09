@@ -1,5 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Application;
+using Microsoft.EntityFrameworkCore;
+using MediatR;
+using System;
 
 namespace YoutubeApi.Installer
 {
@@ -7,7 +11,10 @@ namespace YoutubeApi.Installer
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            return;
+            services.AddDbContext<AppDBContext>(
+                options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString"),
+                b => b.MigrationsAssembly("Presentation")));
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }
