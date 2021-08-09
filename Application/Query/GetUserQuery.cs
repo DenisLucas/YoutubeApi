@@ -1,11 +1,15 @@
-using System;
+using Application.Request;
 using MediatR;
 
 namespace Application.Query
 {
-    public class GetUserQuery : IRequest
+    public class GetUserQuery : IRequest<UserRequest>
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string username;
+        public GetUserQuery(string Username)
+        {
+            username = Username;
+        }
+                
     }
 }

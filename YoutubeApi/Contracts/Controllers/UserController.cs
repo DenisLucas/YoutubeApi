@@ -34,8 +34,9 @@ namespace Presentation.Contracts.Controllers
         [HttpGet(ApiRoutes.user.GetPassword)]
         public async Task<ActionResult> GetPassword(string user)
         {
-            var User = await _mediator.Send(Query); 
-            
+            var query = new GetUserQuery(user);
+            var User = await _mediator.Send(query); 
+            return Ok(User);
         }
 
 
