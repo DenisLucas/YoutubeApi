@@ -12,6 +12,9 @@ namespace Presentation.Contracts
             public const string CreateUser = Base  + "/CreateUser/";
             public const string Get = Base + "/Get/{id}";
             public const string GetPassword = Base + "/GetUserPassword/{user}";
+
+            public const string DeleteUser = Base + "/DeleteUser/{user}/{password}/";
+        
         }
         
     }

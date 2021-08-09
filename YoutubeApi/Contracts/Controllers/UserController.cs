@@ -20,7 +20,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpPost(ApiRoutes.user.CreateUser)]
-        public async Task<ActionResult> CreateUserAsync([FromBody] RegistrateUserCommand request)
+        public async Task<IActionResult> CreateUserAsync([FromBody] RegistrateUserCommand request)
         {
             var User = await _mediator.Send(request); 
             var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
@@ -32,11 +32,23 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpGet(ApiRoutes.user.GetPassword)]
-        public async Task<ActionResult> GetPassword(string user)
+        public async Task<IActionResult> GetPassword(string user)
         {
             var query = new GetUserQuery(user);
             var User = await _mediator.Send(query); 
             return Ok(User);
+        }
+
+        [HttpDelete(ApiRoutes.user.DeleteUser)]
+        public async Task<IActionResult> DeleteUser(string user,string password)
+        {
+            var query = new DeleteUserCommand(user,password);
+            var User = await _mediator.Send(query);
+            if (User)
+            {
+                return NoContent();
+            }
+            return BadRequest();
         }
 
 
