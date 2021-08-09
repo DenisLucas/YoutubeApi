@@ -39,6 +39,14 @@ namespace Presentation.Contracts.Controllers
             return Ok(User);
         }
 
+        [HttpPut(ApiRoutes.user.UpdateUser)]
+        public async Task<IActionResult> UpdateUser(int id,string user, string password)
+        {
+            var query = new UpdateUserCommand(user,password,id);
+            var User = await _mediator.Send(query);
+            return Ok(User);
+               
+        }  
         [HttpDelete(ApiRoutes.user.DeleteUser)]
         public async Task<IActionResult> DeleteUser(string user,string password)
         {
@@ -50,7 +58,6 @@ namespace Presentation.Contracts.Controllers
             }
             return BadRequest();
         }
-
-
+        
     }
 }
