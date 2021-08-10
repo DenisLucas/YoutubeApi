@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "/home/denis/Downloads/Youtube Api/YoutubeApi/Presentation.csproj": {}
+    "/home/denis/Downloads/Youtube Api/Application/Application.csproj": {}
   },
   "projects": {
     "/home/denis/Downloads/Youtube Api/Application/Application.csproj": {
@@ -126,97 +126,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/denis/Downloads/Youtube Api/YoutubeApi/Presentation.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/denis/Downloads/Youtube Api/YoutubeApi/Presentation.csproj",
-        "projectName": "Presentation",
-        "projectPath": "/home/denis/Downloads/Youtube Api/YoutubeApi/Presentation.csproj",
-        "packagesPath": "/home/denis/.nuget/packages/",
-        "outputPath": "/home/denis/Downloads/Youtube Api/YoutubeApi/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/denis/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "/home/denis/Downloads/Youtube Api/Application/Application.csproj": {
-                "projectPath": "/home/denis/Downloads/Youtube Api/Application/Application.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "MediatR": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[5.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.8, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
