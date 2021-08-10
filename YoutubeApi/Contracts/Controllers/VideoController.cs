@@ -51,8 +51,34 @@ namespace Presentation.Contracts.Controllers
             return BadRequest("Erro: Video Does not exist");
         }
         
-        // [HttpPut(ApiRoutes.video.UpdateVideo)]
-  
+        [HttpPut(ApiRoutes.video.UpdateVideo)]
+        public async Task<IActionResult> UpdateVideo(string username, string Password, string videoName, string newVideoName,string url)
+        {
+            var auth = await _UserServices.UserAuthentificationAsync(username,Password);
+            if (auth)
+            {
+                var videoexist = await _UserServices.VideoExistAsync(videoName);
+                if (videoexist)
+                {
+                    var userOwns = await _UserServices.UserOwnsVideo(username,videoName);
+                    if(userOwns)
+                    {
+                        var query = new UpdateVideoCommand(videoName, url,newVideoName);
+                        var result = await _mediator.Send(query);
+                        if (result != null)
+                        {
+                            return Ok(result);
+                        }
+                        return BadRequest("Erro: Failed to Delete");
+                    }
+                    return BadRequest("Erro: User don't own this video");
+                
+                }
+                return BadRequest("Erro: Video Doesn't Exist");
+            }
+            return BadRequest("username or password incorrect");
+        }
+
         [HttpDelete(ApiRoutes.video.DeleteVideo)]
         public async Task<IActionResult> DeleteVideo(string username, string Password, string videoName)
         {

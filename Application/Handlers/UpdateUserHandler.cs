@@ -24,7 +24,7 @@ namespace Application.Handlers
             user.id = user.id;
             user.Username = request.user;
             user.Password = request.password;
-            var result = await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return new UserRequest
             {
                 Username = user.Username,
