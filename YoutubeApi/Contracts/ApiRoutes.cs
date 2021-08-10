@@ -17,6 +17,15 @@ namespace Presentation.Contracts
 
         
         }
+        public static class video
+        {
+            public const string CreateVideo = Base  + "/CreateVideo/";
+            public const string Get = Base + "/Get/{id}";
+            public const string GetVideo = Base + "/GetVideo/{video}";
+            public const string DeleteVideo = Base + "/DeleteUser/{user}/{password}/{video}/";
+            public const string UpdateVideo = Base + "/UpdateUser/{user}/{password}/{video}/";
+
+        }
         
     }
 }

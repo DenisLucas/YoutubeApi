@@ -32,7 +32,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpGet(ApiRoutes.user.GetPassword)]
-        public async Task<IActionResult> GetPassword(string user)
+        public async Task<IActionResult> GetPasswordAsync(string user)
         {
             var query = new GetUserQuery(user);
             var User = await _mediator.Send(query); 
@@ -40,7 +40,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpPut(ApiRoutes.user.UpdateUser)]
-        public async Task<IActionResult> UpdateUser(int id,string user, string password)
+        public async Task<IActionResult> UpdateUserAsync(int id,string user, string password)
         {
             var query = new UpdateUserCommand(user,password,id);
             var User = await _mediator.Send(query);
@@ -48,7 +48,7 @@ namespace Presentation.Contracts.Controllers
                
         }  
         [HttpDelete(ApiRoutes.user.DeleteUser)]
-        public async Task<IActionResult> DeleteUser(string user,string password)
+        public async Task<IActionResult> DeleteUserAsync(string user,string password)
         {
             var query = new DeleteUserCommand(user,password);
             var User = await _mediator.Send(query);

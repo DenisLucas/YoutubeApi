@@ -20,11 +20,12 @@ namespace Application.Handlers
         public async Task<UserRequest> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _context.User.Where(x=> x.Username == request.username).FirstOrDefaultAsync();
-
+            var videos = _context.Video.Where(x=>x.Userid == user.id).Select(x => x.VideoName).ToListAsync();
             return new UserRequest
                 {
                     Username = request.username,
-                    Password = user.Password
+                    Password = user.Password,
+                    VideosName = videos.Result
                 };    
         }
    }
