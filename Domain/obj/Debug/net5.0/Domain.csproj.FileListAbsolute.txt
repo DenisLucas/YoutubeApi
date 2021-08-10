@@ -1,0 +1,12 @@
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.csprojAssemblyReference.cache
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.AssemblyInfoInputs.cache
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.AssemblyInfo.cs
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.csproj.CoreCompileInputs.cache
+/home/denis/Downloads/Youtube Api/Domain/bin/Debug/net5.0/Domain.deps.json
+/home/denis/Downloads/Youtube Api/Domain/bin/Debug/net5.0/Domain.dll
+/home/denis/Downloads/Youtube Api/Domain/bin/Debug/net5.0/ref/Domain.dll
+/home/denis/Downloads/Youtube Api/Domain/bin/Debug/net5.0/Domain.pdb
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.dll
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/ref/Domain.dll
+/home/denis/Downloads/Youtube Api/Domain/obj/Debug/net5.0/Domain.pdb
