@@ -14,6 +14,7 @@ namespace Application.Request
     {
         public string videoName { get; set; }
         public string url { get; set; }
+        public int fav { get; set; }
 
     }
 

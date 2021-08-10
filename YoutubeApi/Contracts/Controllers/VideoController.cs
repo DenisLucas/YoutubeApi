@@ -106,6 +106,23 @@ namespace Presentation.Contracts.Controllers
             }
             return BadRequest("You don't own this video");
         }
+
+        [HttpPut(ApiRoutes.video.LikeVideo)]
+        public async Task<IActionResult> LikeVideo(string username, string Password, string videoName)
+        {
+            var auth = await _UserServices.UserAuthentificationAsync(username, Password);
+            if (auth)
+            {
+                var command = new LikeVideoCommand(videoName);
+                var Query = await _mediator.Send(command);
+                if(Query)
+                {
+                    return Ok();
+                }
+                return BadRequest("Erro: unable to like the video");
+            }
+            return BadRequest("Erro: User or Password Incorrect");
+        }
         
     }
 }

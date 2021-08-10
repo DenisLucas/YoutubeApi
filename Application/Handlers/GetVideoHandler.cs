@@ -22,7 +22,8 @@ namespace Application.Handlers
             return new VideoRequest
             {
                 videoName = video.VideoName,
-                url = video.url
+                url = video.url,
+                fav = video.favs
             };
         }
     }
