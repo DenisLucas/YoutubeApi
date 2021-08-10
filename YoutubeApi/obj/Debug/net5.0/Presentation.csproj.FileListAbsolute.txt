@@ -76,3 +76,7 @@
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/MediatR.dll
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/mono_crash.21acb2c211.1.json
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/MediatR.Extensions.Microsoft.DependencyInjection.dll
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/mono_crash.21acb2c211.2.json
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll

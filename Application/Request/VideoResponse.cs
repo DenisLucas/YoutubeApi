@@ -10,11 +10,10 @@ namespace Application.Request
         public string username { get; set; }
 
     }
-    public class VideoResponseView
+    public class VideoResponseView 
     {
         public string videoName { get; set; }
         public string url { get; set; }
-        public string username { get; set; }
 
     }
 

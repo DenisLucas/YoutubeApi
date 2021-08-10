@@ -13,9 +13,11 @@ namespace Presentation.Contracts.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public UserController(IMediator mediator)
+        private readonly IUserServices _UserServices;
+        public UserController(IMediator mediator, IUserServices UserServices)
         {
             _mediator = mediator;
+            _UserServices = UserServices;
             
         }
 
@@ -34,29 +36,47 @@ namespace Presentation.Contracts.Controllers
         [HttpGet(ApiRoutes.user.GetPassword)]
         public async Task<IActionResult> GetPasswordAsync(string user)
         {
-            var query = new GetUserQuery(user);
-            var User = await _mediator.Send(query); 
-            return Ok(User);
+            var auth = await _UserServices.UserExistsAsync(user);
+
+            if (auth)
+            {
+                var query = new GetUserQuery(user);
+                var User = await _mediator.Send(query); 
+                return Ok(User);
+            }
+            return BadRequest("Erro: User does not exist");
         }
 
         [HttpPut(ApiRoutes.user.UpdateUser)]
         public async Task<IActionResult> UpdateUserAsync(int id,string user, string password)
         {
-            var query = new UpdateUserCommand(user,password,id);
-            var User = await _mediator.Send(query);
-            return Ok(User);
-               
-        }  
+            var auth = await _UserServices.IDExistAsync(id);
+            if (auth)
+            {
+                var query = new UpdateUserCommand(user,password,id);
+                var User = await _mediator.Send(query);
+                return Ok(User);
+            }
+            return BadRequest("Erro: ID does not match");
+
+        }
         [HttpDelete(ApiRoutes.user.DeleteUser)]
         public async Task<IActionResult> DeleteUserAsync(string user,string password)
         {
-            var query = new DeleteUserCommand(user,password);
-            var User = await _mediator.Send(query);
-            if (User)
+
+            var auth = await _UserServices.UserAuthentificationAsync(user,password);
+            if (auth)
             {
-                return NoContent();
+                var query = new DeleteUserCommand(user,password);
+                var User = await _mediator.Send(query);
+                if (User)
+                {
+                    return NoContent();
+                }
+                return BadRequest("Erro: Deleting wasn't succesfull ");
             }
-            return BadRequest();
+            return BadRequest("Erro: User or password does not match"); 
+              
         }
         
     }
