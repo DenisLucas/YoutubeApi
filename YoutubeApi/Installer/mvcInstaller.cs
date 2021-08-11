@@ -1,7 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Microsoft.OpenApi.Models;
+using FluentValidation.AspNetCore;
+using Presentation;
+using Application.Filters;
+using Application;
 
 namespace YoutubeApi.Installer
 {
@@ -10,10 +13,10 @@ namespace YoutubeApi.Installer
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+            services.AddMvc(options=> 
+                options.Filters.Add<ValidationFilter>());
+            services.AddFluentValidation(mvcConfiguration=> mvcConfiguration.RegisterValidatorsFromAssemblyContaining<AppDBContext>());
+
             
             services.AddSwaggerGen(c =>
             {

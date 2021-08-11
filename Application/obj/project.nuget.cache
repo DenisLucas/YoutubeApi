@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "9CbGOnq0pxPuwxMEghijr+X4voe+9ROdh84xImHJsZiAJpTB2MWIpftKfFJG9wCdSik8iLCHuKVkh6wKmLSKoQ==",
+  "dgSpecHash": "ILfGhsfax3dEWyje2+Ik/UyKug9/M550l6aXuoAtILri08okln2mE77k+Q5Wf+SrYQjRI+mqloTW4WSC/W9yeg==",
   "success": true,
   "projectFilePath": "/home/denis/Downloads/Youtube Api/Application/Application.csproj",
   "expectedPackageFiles": [
     "/home/denis/.nuget/packages/entityframework/6.4.4/entityframework.6.4.4.nupkg.sha512",
+    "/home/denis/.nuget/packages/fluentvalidation/10.3.0/fluentvalidation.10.3.0.nupkg.sha512",
+    "/home/denis/.nuget/packages/fluentvalidation.aspnetcore/10.3.0/fluentvalidation.aspnetcore.10.3.0.nupkg.sha512",
+    "/home/denis/.nuget/packages/fluentvalidation.dependencyinjectionextensions/10.3.0/fluentvalidation.dependencyinjectionextensions.10.3.0.nupkg.sha512",
     "/home/denis/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
     "/home/denis/.nuget/packages/microsoft.aspnetcore.jsonpatch/5.0.9/microsoft.aspnetcore.jsonpatch.5.0.9.nupkg.sha512",
     "/home/denis/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/5.0.9/microsoft.aspnetcore.mvc.newtonsoftjson.5.0.9.nupkg.sha512",

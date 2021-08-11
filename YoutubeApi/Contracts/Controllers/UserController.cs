@@ -24,6 +24,13 @@ namespace Presentation.Contracts.Controllers
         [HttpPost(ApiRoutes.user.CreateUser)]
         public async Task<IActionResult> CreateUserAsync([FromBody] RegistrateUserCommand request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("hoi");
+            }
+            var auth =await _UserServices.UserExistsAsync(request.UserName);
+            if (!auth)
+            {
             var User = await _mediator.Send(request); 
             var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
             var locationuri = BaseUrl + "/" + ApiRoutes.user.Get.Replace("{id}",User.id.ToString());
@@ -31,8 +38,9 @@ namespace Presentation.Contracts.Controllers
                  new UserReturnResponse {
                     Username = User.Username,
                     Password = User.Password});
+            }
+            return  BadRequest("Erro: Username already exist");
         }
-
         [HttpGet(ApiRoutes.user.GetPassword)]
         public async Task<IActionResult> GetPasswordAsync(string user)
         {

@@ -81,3 +81,6 @@
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll
 /home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/mono_crash.21acb2c211.3.json
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/FluentValidation.dll
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/FluentValidation.AspNetCore.dll
+/home/denis/Downloads/Youtube Api/YoutubeApi/bin/Debug/net5.0/FluentValidation.DependencyInjectionExtensions.dll

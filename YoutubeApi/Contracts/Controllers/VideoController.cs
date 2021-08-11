@@ -23,18 +23,23 @@ namespace Presentation.Contracts.Controllers
         [HttpPost(ApiRoutes.video.CreateVideo)]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateVideoCommand request)
         {
-            var auth = await _UserServices.UserAuthentificationAsync(request.username,request.password);
-            if (auth)
+            var videoexist = await _UserServices.VideoExistAsync(request.videoName);
+            if (!videoexist)
             {
-            var Video = await _mediator.Send(request); 
-            var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
-            var locationuri = BaseUrl + "/" + ApiRoutes.video.Get.Replace("{id}",Video.id.ToString());
-            return Created(locationuri,
-                new VideoResponseView {
-                    videoName = Video.videoName,
-                    url = Video.url});
+                var auth = await _UserServices.UserAuthentificationAsync(request.username,request.password);
+                if (auth)
+                {
+                var Video = await _mediator.Send(request); 
+                var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
+                var locationuri = BaseUrl + "/" + ApiRoutes.video.Get.Replace("{id}",Video.id.ToString());
+                return Created(locationuri,
+                    new VideoResponseView {
+                        videoName = Video.videoName,
+                        url = Video.url});
+                }
+                return BadRequest("Erro: User Or Password Dont Match");
             }
-            return BadRequest("Erro: User Or Password Dont Match");
+            return BadRequest("Erro: A video with this name already exist");
         }
 
         
@@ -52,7 +57,7 @@ namespace Presentation.Contracts.Controllers
         }
         
         [HttpPut(ApiRoutes.video.UpdateVideo)]
-        public async Task<IActionResult> UpdateVideo(string username, string Password, string videoName, string newVideoName,string url)
+        public async Task<IActionResult> UpdateVideoAsync(string username, string Password, string videoName, string newVideoName,string url)
         {
             var auth = await _UserServices.UserAuthentificationAsync(username,Password);
             if (auth)
@@ -80,7 +85,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpDelete(ApiRoutes.video.DeleteVideo)]
-        public async Task<IActionResult> DeleteVideo(string username, string Password, string videoName)
+        public async Task<IActionResult> DeleteVideoAsync(string username, string Password, string videoName)
         {
             var auth = await _UserServices.UserAuthentificationAsync(username,Password);
             if (auth)
@@ -108,7 +113,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpPut(ApiRoutes.video.LikeVideo)]
-        public async Task<IActionResult> LikeVideo(string username, string Password, string videoName)
+        public async Task<IActionResult> LikeVideoAsync(string username, string Password, string videoName)
         {
             var auth = await _UserServices.UserAuthentificationAsync(username, Password);
             if (auth)
