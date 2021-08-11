@@ -21,7 +21,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         [HttpPost(ApiRoutes.video.CreateVideo)]
-        public async Task<IActionResult> CreateUserAsync([FromBody] CreateVideoCommand request)
+        public async Task<IActionResult> CreateVideoAsync([FromBody] CreateVideoCommand request)
         {
             var videoexist = await _UserServices.VideoExistAsync(request.videoName);
             if (!videoexist)
