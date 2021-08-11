@@ -1,10 +1,10 @@
 using System;
-using Application.Request;
+using Application.Response;
 using MediatR;
 
 namespace Application.Command
 {
-    public class CreateVideoCommand : IRequest<VideoResponse>
+    public class CreateVideoCommand : IRequest<VideoUpdateResponse>
     {
         public string videoName { get; set; }
         public string url { get; set; }

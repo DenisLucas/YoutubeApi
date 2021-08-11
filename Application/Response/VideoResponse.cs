@@ -1,8 +1,15 @@
 using System;
 
-namespace Application.Request
+namespace Application.Response
 {
     public class VideoResponse
+    {
+        public string videoName { get; set; }
+        public string url { get; set; }
+        public int fav { get; set; }
+
+    }
+    public class VideoUpdateResponse
     {
         public int id { get; set; }
         public string videoName { get; set; }
@@ -10,12 +17,4 @@ namespace Application.Request
         public string username { get; set; }
 
     }
-    public class VideoResponseView 
-    {
-        public string videoName { get; set; }
-        public string url { get; set; }
-        public int fav { get; set; }
-
-    }
-
 }

@@ -5,6 +5,7 @@ using Application.Command;
 using Application.Request;
 using Application.Services;
 using Application.Query;
+using Application.Response;
 
 namespace Presentation.Contracts.Controllers
 {
@@ -33,7 +34,7 @@ namespace Presentation.Contracts.Controllers
                 var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
                 var locationuri = BaseUrl + "/" + ApiRoutes.video.Get.Replace("{id}",Video.id.ToString());
                 return Created(locationuri,
-                    new VideoResponseView {
+                    new VideoResponse {
                         videoName = Video.videoName,
                         url = Video.url});
                 }

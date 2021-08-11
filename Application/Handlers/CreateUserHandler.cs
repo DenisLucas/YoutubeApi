@@ -2,20 +2,21 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Command;
+using Application.Request;
 using Application.Response;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Handlers
 {
-    public class CreateUserHandler : IRequestHandler<RegistrateUserCommand, UserRegistrationResponse>
+    public class CreateUserHandler : IRequestHandler<RegistrateUserCommand, UserRegistrationRequest>
     {
         public AppDBContext _context;
         public CreateUserHandler(AppDBContext context)
         {
             _context = context;
         }
-        public async Task<UserRegistrationResponse> Handle(RegistrateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserRegistrationRequest> Handle(RegistrateUserCommand request, CancellationToken cancellationToken)
         {
             
             var user = new User
@@ -26,7 +27,7 @@ namespace Application.Handlers
             await _context.User.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            return new UserRegistrationResponse 
+            return new UserRegistrationRequest 
             {
                 id = user.id,
                 Username = user.Username,

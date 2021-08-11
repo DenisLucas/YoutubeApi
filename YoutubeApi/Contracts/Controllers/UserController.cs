@@ -35,7 +35,7 @@ namespace Presentation.Contracts.Controllers
             var BaseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";    
             var locationuri = BaseUrl + "/" + ApiRoutes.user.Get.Replace("{id}",User.id.ToString());
             return Created(locationuri,
-                 new UserReturnResponse {
+                 new UserRegistrationResponse {
                     Username = User.Username,
                     Password = User.Password});
             }

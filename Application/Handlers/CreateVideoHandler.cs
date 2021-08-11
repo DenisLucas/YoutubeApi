@@ -3,14 +3,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Command;
-using Application.Request;
+using Application.Response;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers
 {
-    public class CreateVideoHandler : IRequestHandler<CreateVideoCommand, VideoResponse>
+    public class CreateVideoHandler : IRequestHandler<CreateVideoCommand, VideoUpdateResponse>
     {
         public AppDBContext _context;
         public CreateVideoHandler(AppDBContext context)
@@ -18,7 +18,7 @@ namespace Application.Handlers
             _context = context;
         }
         
-        public async Task<VideoResponse> Handle(CreateVideoCommand request, CancellationToken cancellationToken)
+        public async Task<VideoUpdateResponse> Handle(CreateVideoCommand request, CancellationToken cancellationToken)
         {
             var Video = await _context.User.Where(
                 x => x.Username == request.username && 
@@ -33,7 +33,7 @@ namespace Application.Handlers
             await _context.Video.AddAsync(video);
             await _context.SaveChangesAsync();
 
-            return new VideoResponse
+            return new VideoUpdateResponse
             {
                 id = video.id,
                 videoName = video.VideoName,
