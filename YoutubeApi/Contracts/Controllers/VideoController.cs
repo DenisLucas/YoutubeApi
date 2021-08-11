@@ -113,13 +113,18 @@ namespace Presentation.Contracts.Controllers
             var auth = await _UserServices.UserAuthentificationAsync(username, Password);
             if (auth)
             {
-                var command = new LikeVideoCommand(videoName);
+                var isFirst = await _UserServices.Liked(videoName,username);
+                if (isFirst)
+                {
+                var command = new LikeVideoCommand(videoName,username);
                 var Query = await _mediator.Send(command);
                 if(Query)
                 {
                     return Ok();
                 }
                 return BadRequest("Erro: unable to like the video");
+                }
+                return BadRequest("Erro: You already liked this video");
             }
             return BadRequest("Erro: User or Password Incorrect");
         }

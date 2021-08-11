@@ -23,8 +23,8 @@ namespace Presentation.Contracts
             public const string Get = Base + "/Get/{id}";
             public const string GetVideo = Base + "/GetVideo/";
             public const string DeleteVideo = Base + "/DeleteUser/{username}/{Password}/{videoName}/";
-            public const string UpdateVideo = Base + "/UpdateUser/{username}/{Password}/{videoName}/{newVideoName}/{url}/";
-            public const string LikeVideo = Base + "/UpdateUser/{username}/{Password}/{videoName}/";
+            public const string UpdateVideo = Base + "/UpdateVideo/{username}/{Password}/{videoName}/{newVideoName}/{url}/";
+            public const string LikeVideo = Base + "/LikeVideo/{username}/{Password}/{videoName}/";
 
 
         }

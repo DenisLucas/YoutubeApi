@@ -66,7 +66,19 @@ namespace Application.Services
             }
             }
             return false;
+        }
 
+        public async Task<bool> Liked(string videoName, string username)
+        {
+            var videoID = await _context.Video.Where(x=> x.VideoName == videoName).FirstOrDefaultAsync();
+            var userID = await _context.User.Where(x=>x.Username == username).FirstOrDefaultAsync();
+           
+            var liked = await _context.LikesAndUsers.Where(x=> x.VideoID == videoID.id && x.UserID == userID.id).FirstOrDefaultAsync();
+            if (liked == null)
+            {
+                return true;
+            }
+            return false;
         }
     
     }

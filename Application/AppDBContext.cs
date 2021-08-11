@@ -12,5 +12,6 @@ namespace Application
 
         public DbSet<User> User { get; set; }
         public DbSet<Video> Video { get; set; }
+        public DbSet<LikesAndUsers> LikesAndUsers { get; set; }
     }
 }
