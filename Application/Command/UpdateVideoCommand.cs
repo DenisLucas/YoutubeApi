@@ -6,15 +6,10 @@ namespace Application.Command
 {
     public class UpdateVideoCommand : IRequest<VideoRequest>
     {
-        public string videoName;
-        public string newVideoName;
-     
-        public string url;
-        public UpdateVideoCommand(string VideoName, string Url, string newVideoName)
+        public VideoUpdateRequest video;
+        public UpdateVideoCommand(VideoUpdateRequest Video)
         {
-            videoName = VideoName;
-            url = Url;
-            this.newVideoName = newVideoName;
+            video = Video;
         }
     }
 }

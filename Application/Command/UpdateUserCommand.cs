@@ -6,13 +6,11 @@ namespace Application.Command
 {
     public class UpdateUserCommand : IRequest<UserRequest>
     {
-        public string user;
-        public string password;
+        public UserUpdateRequest user;
         public int id;
-        public UpdateUserCommand(string User, string Password, int Id)
+        public UpdateUserCommand(UserUpdateRequest User, int Id)
         {
             user = User;
-            password = Password;
             id = Id;
         }
     }

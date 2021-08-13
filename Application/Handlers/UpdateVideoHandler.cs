@@ -18,9 +18,9 @@ namespace Application.Handlers
         }
         public async Task<VideoRequest> Handle(UpdateVideoCommand request, CancellationToken cancellationToken)
         {
-            var video = await _context.Video.Where(x=> x.VideoName == request.videoName).FirstOrDefaultAsync();
-            video.VideoName = request.newVideoName;
-            video.url = request.url;
+            var video = await _context.Video.Where(x=> x.VideoName == request.video.videoName).FirstOrDefaultAsync();
+            video.VideoName = request.video.newVideoName;
+            video.url = request.video.url;
             await _context.SaveChangesAsync();
             return new VideoRequest
             {

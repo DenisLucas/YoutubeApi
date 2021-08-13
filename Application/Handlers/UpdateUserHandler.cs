@@ -22,8 +22,8 @@ namespace Application.Handlers
             var user = await _context.User.Where(x=> x.id == request.id).FirstOrDefaultAsync();
 
             user.id = user.id;
-            user.Username = request.user;
-            user.Password = request.password;
+            user.Username = request.user.newUsername;
+            user.Password = request.user.newPassword;
             await _context.SaveChangesAsync();
             return new UserRequest
             {

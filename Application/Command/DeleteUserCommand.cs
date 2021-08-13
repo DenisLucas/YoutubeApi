@@ -7,11 +7,9 @@ namespace Application.Command
     public class DeleteUserCommand : IRequest<bool>
     {
         public string user;
-        public string password;
-        public DeleteUserCommand(string User, string Password)
+        public DeleteUserCommand(string User)
         {
             user = User;
-            password = Password;
         }
     }
 }

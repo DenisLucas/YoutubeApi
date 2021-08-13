@@ -16,7 +16,7 @@ namespace Application.Handlers
         }
         public async Task<bool> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var todelete =  _context.User.Where(x=> x.Username == request.user && x.Password == request.password).FirstOrDefault();
+            var todelete =  _context.User.Where(x=> x.Username == request.user).FirstOrDefault();
             if (todelete != null){
                 _context.User.Remove(todelete);
                 var result = await _context.SaveChangesAsync();

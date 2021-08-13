@@ -4,27 +4,32 @@ namespace Presentation.Contracts
 {
     public class ApiRoutes
     {
-        public const string version = "v1";
+
         public const string root = "api";
-        public const string Base = root + "/" + version;
+        public const string Base = root;
         public static class user
         {
-            public const string CreateUser = Base  + "/CreateUser/";
+            public const string Create = Base  + "/user/";
+            public const string Read = Base  + "/user/{user}";
+            public const string Update = Base  + "/user/{id}/";
+            public const string Delete = Base  + "/user/{user}/";            
             public const string Get = Base + "/Get/{id}";
-            public const string GetPassword = Base + "/GetUserPassword/{user}";
-            public const string DeleteUser = Base + "/DeleteUser/{user}/{password}/";
-            public const string UpdateUser = Base + "/UpdateUser/{user}/{password}/";
+
 
         
         }
         public static class video
         {
-            public const string CreateVideo = Base  + "/CreateVideo/";
+            public const string create = Base  + "/video/";
+
+            public const string read = Base  + "/video/{videoName}";
+
+            public const string update = Base  + "/video/{username}/";
+
+            public const string delete = Base  + "/video/{username}/{videoName}";
+
+            public const string like = Base  + "/video/like/{username}/";
             public const string Get = Base + "/Get/{id}";
-            public const string GetVideo = Base + "/GetVideo/";
-            public const string DeleteVideo = Base + "/DeleteUser/{username}/{Password}/{videoName}/";
-            public const string UpdateVideo = Base + "/UpdateVideo/{username}/{Password}/{videoName}/{newVideoName}/{url}/";
-            public const string LikeVideo = Base + "/LikeVideo/{username}/{Password}/{videoName}/";
 
 
         }

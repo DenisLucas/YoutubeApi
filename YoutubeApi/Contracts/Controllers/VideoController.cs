@@ -21,7 +21,7 @@ namespace Presentation.Contracts.Controllers
             
         }
 
-        [HttpPost(ApiRoutes.video.CreateVideo)]
+        [HttpPost(ApiRoutes.video.create)]
         public async Task<IActionResult> CreateVideoAsync([FromBody] CreateVideoCommand request)
         {
             var videoexist = await _UserServices.VideoExistAsync(request.videoName);
@@ -44,7 +44,7 @@ namespace Presentation.Contracts.Controllers
         }
 
         
-        [HttpGet(ApiRoutes.video.GetVideo)]
+        [HttpGet(ApiRoutes.video.read)]
         public async Task<IActionResult> GetVideoByNameAsync(string videoName)
         {
             var auth = await _UserServices.VideoExistAsync(videoName);
@@ -57,82 +57,68 @@ namespace Presentation.Contracts.Controllers
             return BadRequest("Erro: Video Does not exist");
         }
         
-        [HttpPut(ApiRoutes.video.UpdateVideo)]
-        public async Task<IActionResult> UpdateVideoAsync(string username, string Password, string videoName, string newVideoName,string url)
+        [HttpPut(ApiRoutes.video.update)]
+        public async Task<IActionResult> UpdateVideoAsync(string username,[FromBody] VideoUpdateRequest request)
         {
-            var auth = await _UserServices.UserAuthentificationAsync(username,Password);
-            if (auth)
+            var videoexist = await _UserServices.VideoExistAsync(request.videoName);
+            if (videoexist)
             {
-                var videoexist = await _UserServices.VideoExistAsync(videoName);
-                if (videoexist)
+                var userOwns = await _UserServices.UserOwnsVideo(username,request.videoName);
+                if(userOwns)
                 {
-                    var userOwns = await _UserServices.UserOwnsVideo(username,videoName);
-                    if(userOwns)
+                    var query = new UpdateVideoCommand(request);
+                    var result = await _mediator.Send(query);
+                    if (result != null)
                     {
-                        var query = new UpdateVideoCommand(videoName, url,newVideoName);
-                        var result = await _mediator.Send(query);
-                        if (result != null)
-                        {
-                            return Ok(result);
-                        }
-                        return BadRequest("Erro: Failed to Delete");
+                        return Ok(result);
                     }
-                    return BadRequest("Erro: User don't own this video");
-                
+                    return BadRequest("Erro: Failed to Delete");
                 }
-                return BadRequest("Erro: Video Doesn't Exist");
+                return BadRequest("Erro: User don't own this video");
+            
             }
-            return BadRequest("username or password incorrect");
+            return BadRequest("Erro: Video Doesn't Exist");
         }
 
-        [HttpDelete(ApiRoutes.video.DeleteVideo)]
-        public async Task<IActionResult> DeleteVideoAsync(string username, string Password, string videoName)
+        [HttpDelete(ApiRoutes.video.delete)]
+        public async Task<IActionResult> DeleteVideoAsync(string username, string videoName)
         {
-            var auth = await _UserServices.UserAuthentificationAsync(username,Password);
-            if (auth)
+            var videoexist = await _UserServices.VideoExistAsync(videoName);
+            if (videoexist)
             {
-                var videoexist = await _UserServices.VideoExistAsync(videoName);
-                if (videoexist)
+                var userOwns = await _UserServices.UserOwnsVideo(username,videoName);
+                if(userOwns)
                 {
-                    var userOwns = await _UserServices.UserOwnsVideo(username,videoName);
-                    if(userOwns)
+                    var query = new DeleteVideoCommand(videoName);
+                    var result = await _mediator.Send(query);
+                    if (result)
                     {
-                        var query = new DeleteVideoCommand(videoName);
-                        var result = await _mediator.Send(query);
-                        if (result)
-                        {
-                            return Ok();
-                        }
-                        return BadRequest("Erro: Failed to Delete");
+                        return Ok();
                     }
-                    return BadRequest("Erro: User don't own this video");
-                
+                    return BadRequest("Erro: Failed to Delete");
                 }
-                return BadRequest("Erro: Video Doesn't Exist");
+                return BadRequest("Erro: User don't own this video");
+            
             }
-            return BadRequest("You don't own this video");
+            return BadRequest("Erro: Video Doesn't Exist");
         }
 
-        [HttpPut(ApiRoutes.video.LikeVideo)]
-        public async Task<IActionResult> LikeVideoAsync(string username, string Password, string videoName)
+        [HttpPut(ApiRoutes.video.like)]
+        public async Task<IActionResult> LikeVideoAsync(string username, string videoName)
         {
-            var auth = await _UserServices.UserAuthentificationAsync(username, Password);
-            if (auth)
+            var isFirst = await _UserServices.Liked(videoName,username);
+            if (isFirst)
             {
-                var isFirst = await _UserServices.Liked(videoName,username);
-                if (isFirst)
-                {
-                var command = new LikeVideoCommand(videoName,username);
-                var Query = await _mediator.Send(command);
-                if(Query)
-                {
-                    return Ok();
-                }
-                return BadRequest("Erro: unable to like the video");
-                }
-                return BadRequest("Erro: You already liked this video");
+            var command = new LikeVideoCommand(videoName,username);
+            var Query = await _mediator.Send(command);
+            if(Query)
+            {
+                return Ok();
             }
-            return BadRequest("Erro: User or Password Incorrect");
+            return BadRequest("Erro: unable to like the video");
+            }
+            return BadRequest("Erro: You already liked this video");
+        
         }
         
     }
